@@ -1,0 +1,14 @@
+Mi proyecto ya tiene los siguientes pasos hechos pero por si acaso aqui estan los
+comandos para hacer las conexiones del proyecto y la bd
+
+Paquetes a instalar:
+
+Install-Package Microsoft.EntityFrameworkCore.Relational -v 3.1.12
+Install-Package Microsoft.EntityFrameworkCore.SqlServer -v 3.1.12
+Install-Package Microsoft.EntityFrameworkCore.Tools -v 3.1.12
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -Version 3.1.5
+Install-Package Pomelo.EntityFrameworkCore.MySql -v 3.2.4
+
+Comando para crear las clases:
+
+Scaffold-DbContext "server=localhost;uid=root;pwd=mysql;database=vacunaterd" Pomelo.EntityFrameworkCore.MySql -OutputDir Modelos -f

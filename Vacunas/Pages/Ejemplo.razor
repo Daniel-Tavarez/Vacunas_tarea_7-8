@@ -1,0 +1,79 @@
+﻿@page "/ejemplo"
+
+<h3>Ejemplo</h3>
+<button class="btn btn-primary" @onclick="agregar">agregar otro</button>
+<br />
+<br />
+<button class="btn btn-primary" @onclick="actualizar">actualizar lista</button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var provincia in provincias)
+            {
+                <tr>
+                    <td>@provincia.Id</td>
+                    <td>@provincia.Nombre</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+@code {
+    List<Provincias> provincias = new List<Provincias>();
+    List<Provincias> getProvincias()
+    {
+        using (var context = new vacunaterdContext())
+        {
+            return context.Provincias.ToList();
+        }
+    }
+
+    //un ejemplo de como agregar objetos de manera asincrona a la base de datos
+    async Task agregar()
+    {
+        using (var context = new vacunaterdContext())
+        {
+            //el id es auto increment asi que lo dejamos null
+            await context.Provincias.AddAsync(new Provincias() { Nombre = "Santo Domingo" });
+            await context.SaveChangesAsync();
+        }
+    }
+    //ejemplo de consulta con query de manera asincrona
+    //para ejecutar query que no son consultas se usa otra logica
+    async Task actualizar()
+    {
+        using (var context = new vacunaterdContext())
+        {
+            //reseteamos la lista para no duplicar datos
+            provincias.Clear();
+            var conn = context.Database.GetDbConnection();
+            await conn.OpenAsync();
+            var command = conn.CreateCommand();
+            const string query = @"SELECT *from provincias";
+            command.CommandText = query;
+            var reader = await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                provincias.Add(new Provincias() { Id = reader.GetInt32(0), Nombre = reader.GetString(1) });
+            }
+        }
+    }
+    //un ejemplo para cargar los datos de forma asincrona cuando se cargue la pagina
+    protected override async Task OnInitializedAsync()
+    {
+
+        Task task = new Task(() =>{
+            provincias = getProvincias();
+        });
+        task.Start();
+        await task;
+    }
+
+}
