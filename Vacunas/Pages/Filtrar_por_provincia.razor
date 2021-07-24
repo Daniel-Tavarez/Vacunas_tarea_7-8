@@ -1,0 +1,101 @@
+﻿@page "/Filtro_por_provincia"
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<div class="container">
+    <h1>Buscar personas por provincia</h1>
+    <select class="form-select" aria-label="Default select example">
+        <option selected>Seleccione su provincia</option>
+        <option value="1">Azua</option>
+        <option value="2">Bahoruco</option>
+        <option value="3">Barahona</option>
+        <option value="4">Dajabón</option>
+        <option value="5">Distrito nacional</option>
+        <option value="6">Duarte</option>
+        <option value="7">Elías piña</option>
+        <option value="8">El Seibo</option>
+        <option value="9">Espaillat</option>
+        <option value="10">Hato Mayor</option>
+        <option value="11">Hermanas Mirabal</option>
+        <option value="12">Independencia</option>
+        <option value="13">La Altagracia</option>
+        <option value="14">La Romana</option>
+        <option value="15">La Vega</option>
+        <option value="16">María Trinidad Sánchez</option>
+        <option value="17">Monseñor Nouel</option>
+        <option value="18">Monte Cristi</option>
+        <option value="19">Monte Plata</option>
+        <option value="20">Pedernales</option>
+        <option value="21">Peravia</option>
+        <option value="22">Puerto Plata</option>
+        <option value="23">Samaná</option>
+        <option value="24">Sánchez Ramírez</option>
+        <option value="25">San Cristobal</option>
+        <option value="26">San José De Ocoa</option>
+        <option value="27">San Juan</option>
+        <option value="28">San Pedro de Macorís</option>
+        <option value="29">Santiago</option>
+        <option value="30">Santiago Rodríguez</option>
+        <option value="31">Santo Domingo</option>
+        <option value="32">Valverde Mao</option>
+    </select>
+
+    <button type="button" class="btn btn-outline-success">Buscar</button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Cedula</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Tipo de vacuna</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Otto</td>
+                <td>Otto</td>
+                <td>Otto</td>
+                <td>Otto</td>
+                <td>Otto</td>
+                <td>Otto</td>
+            </tr>
+            <tr>
+                <td>Otto</td>
+                <td>Otto</td>
+                <td>Otto</td>
+                <td>Otto</td>
+                <td>Otto</td>
+                <td>Otto</td>
+            </tr>
+            <tr>
+                <td>Otto</td>
+                <td>Otto</td>
+                <td>Otto</td>
+                <td>Otto</td>
+                <td>Otto</td>
+                <td>Otto</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .container{
+        margin-top: 50px;
+    }
+    .form-select {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .btn-outline-success {
+        margin-top: 15px;
+        margin-bottom: 25px;
+    }
+</style>
+
+@code {
+    
+}

@@ -1,0 +1,90 @@
+﻿@page "/Registrar"
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<div class="container">
+    <h1>Registro de vacunas</h1>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Introduzca Nombre</span>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Introduzca Apellido</span>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Introduzca Telefono</span>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Introduzca su fecha de nacimiento</span>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <select class="form-select" aria-label="Default select example">
+        <option selected>Vacuna recibida</option>
+        <option value="1">Pfizer-BioNTech</option>
+        <option value="2">Moderna</option>
+        <option value="3">Johnson & Johnson's Janssen</option>
+        <option value="4">mRNA</option>
+        <option value="5">Viral Vector Vaccines</option>
+        <option value="6">Sinovac</option>
+    </select>
+    <select class="form-select" aria-label="Default select example">
+        <option selected>Seleccione su provincia</option>
+        <option value="1">Azua</option>
+        <option value="2">Bahoruco</option>
+        <option value="3">Barahona</option>
+        <option value="4">Dajabón</option>
+        <option value="5">Distrito nacional</option>
+        <option value="6">Duarte</option>
+        <option value="7">Elías piña</option>
+        <option value="8">El Seibo</option>
+        <option value="9">Espaillat</option>
+        <option value="10">Hato Mayor</option>
+        <option value="11">Hermanas Mirabal</option>
+        <option value="12">Independencia</option>
+        <option value="13">La Altagracia</option>
+        <option value="14">La Romana</option>
+        <option value="15">La Vega</option>
+        <option value="16">María Trinidad Sánchez</option>
+        <option value="17">Monseñor Nouel</option>
+        <option value="18">Monte Cristi</option>
+        <option value="19">Monte Plata</option>
+        <option value="20">Pedernales</option>
+        <option value="21">Peravia</option>
+        <option value="22">Puerto Plata</option>
+        <option value="23">Samaná</option>
+        <option value="24">Sánchez Ramírez</option>
+        <option value="25">San Cristobal</option>
+        <option value="26">San José De Ocoa</option>
+        <option value="27">San Juan</option>
+        <option value="28">San Pedro de Macorís</option>
+        <option value="29">Santiago</option>
+        <option value="30">Santiago Rodríguez</option>
+        <option value="31">Santo Domingo</option>
+        <option value="32">Valverde Mao</option>
+    </select>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Fecha</span>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <button type="button" class="btn btn-outline-success">Registrar</button>
+</div>
+
+<style>
+    .container{
+        margin-top: 50px;
+    }
+    .form-select{
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .input-group{
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+</style>
+
+@code {
+    
+}
