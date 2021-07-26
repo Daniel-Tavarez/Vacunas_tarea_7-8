@@ -22,13 +22,13 @@ namespace Vacunas.Modelos
         public virtual DbSet<Dosis> Dosis { get; set; }
         public virtual DbSet<Personas> Personas { get; set; }
         public virtual DbSet<Provincias> Provincias { get; set; }
-        public virtual DbSet<VacunasClase> Vacunas { get; set; }
+        public virtual DbSet<VacunasClase> VacunasClase { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-// To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseMySql("server=localhost;uid=root;pwd=mysql;database=vacunaterd", x => x.ServerVersion("10.4.20-mariadb"));
             }
         }
@@ -125,7 +125,11 @@ namespace Vacunas.Modelos
                     .HasColumnName("Dosis_necesarias")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.Nombre).HasColumnType("int(20)");
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasColumnType("varchar(20)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_general_ci");
             });
 
             OnModelCreatingPartial(modelBuilder);

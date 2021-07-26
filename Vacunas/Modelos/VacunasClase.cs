@@ -10,7 +10,7 @@ namespace Vacunas.Modelos
     public partial class VacunasClase
     {
         public int Id { get; set; }
-        public int Nombre { get; set; }
+        public string Nombre { get; set; }
         public int DosisNecesarias { get; set; }
         public int DiasEntreDosis { get; set; }
     }
