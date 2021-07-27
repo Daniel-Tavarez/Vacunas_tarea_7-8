@@ -1,0 +1,85 @@
+@page "/Filtro_por_provincia"
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<div class="container">
+    <h1>Listado de personas vacunadas por provincia</h1>
+    <br>
+    <select class="form-select" aria-label="Default select example" @bind="Search" @bind:event="oninput">
+                    <option selected value="0">-- Seleccione una provincia --</option>
+                    @foreach (var provincia in GtP())
+                    {
+                        <option value="@provincia.Id"> @provincia.Nombre</option>
+                    }
+                </select>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Cedula</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Provincia donde recibio la dosis</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in GetP)
+            {
+                <tr>
+                    <td>@p.Cedula</td>
+                    <td>@p.Nombre</td>
+                    <td>@p.Apellidos</td>
+                    <td>@p.Telefono</td>
+                    <td>@p.FechaNacimiento</td>             
+                
+                    <td>
+                    @foreach (var v in GtP())
+                    {
+                        if (p.ProvinciaId == v.Id)
+                        {
+                            <td>@v.Nombre</td>
+                        }
+                    }
+                </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .container{
+        margin-top: 50px;
+    }
+    .form-select {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .btn-outline-success {
+        margin-top: 15px;
+        margin-bottom: 25px;
+    }
+</style>
+
+@code {
+    List<Provincias> provincias;
+    int sProvinciaID;
+    int count = 0;
+    string counted;
+
+    public int Search;
+
+    List<Personas> GtPs() => new vacunaterdContext().Personas.ToList();
+
+    vacunaterdContext vrd = new vacunaterdContext();
+
+    Dosis dosi;
+
+    List<Provincias> prv = new List<Provincias>();
+    List<Provincias> GtP() => new vacunaterdContext().Provincias.ToList();
+
+    List<Personas> GetP => GtPs().Where(e => e.ProvinciaId == Search).ToList();
+
+}

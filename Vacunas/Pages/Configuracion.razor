@@ -1,0 +1,168 @@
+@page "/Configuracion"
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<div class="container">
+    <h1>Registro de vacunas y provincias</h1>
+    <br>
+    <br>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Registrar una provincia</span>
+        <input @bind-value="@ProvinciaG" type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" size="30"><button @onclick="agregarP" type="button" class="btn btn-success">Guardar Provincia</button>
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Registrar una vacuna</span>
+        <input @bind-value="@VacunaG" type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" size="30"><button @onclick="agregarV" type="button" class="btn btn-success">Guardar Vacuna</button>
+    </div>
+    <br>
+<br>
+<div class="alert alert-success d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="https://www.flaticon.com/" aria-label="Success:">
+    </svg>
+    <div>
+        @Notificar
+    </div>
+</div>
+<br>
+<br>
+<br>
+<h3 class="P1">Provincias</h3><h3 class="P2">Vacunas</h3>
+<br>
+<br>
+<br>
+    <table class="tabla1 table-bordered" border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in  getProvincias())
+            {
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.Nombre</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="tabla2 table-bordered" border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var v in getVacunas())
+            {
+                <tr>
+                    <td>@v.Id</td>
+                    <td>@v.Nombre</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>
+
+<style>
+    .container {
+        margin-top: 50px;
+        width: 2000px;
+        float: left;
+    }
+
+    .P1 {
+        text-align: center;
+        float: left;
+        margin-left: 200px;
+        color: darkblue;
+    }
+
+    .P2 {
+        text-align: center;
+        float: right;
+        margin-right: 250px;
+        color: darkblue;
+    }
+
+    .tabla1 {
+        text-align: center;
+        float: left;
+        width: 400px;
+        margin-left: 80px;
+    }
+
+    .tabla2 {
+        text-align: center;
+        float: right;
+        width: 400px;
+        margin-right: 100px;
+    }
+</style>
+
+@code {
+    List<Provincias> provincias = new List<Provincias>().ToList();
+    List<Provincias> getProvincias()
+    {
+        using (var context = new vacunaterdContext())
+        {
+            return context.Provincias.ToList();
+        }
+    }
+
+    List<VacunasClase> vacunas = new List<VacunasClase>();
+    List<VacunasClase> getVacunas()
+    {
+        using (var context = new vacunaterdContext())
+        {
+            return context.VacunasClase.ToList();
+        }
+    }
+
+    public string ProvinciaG {get; set;} = "";
+
+    public string VacunaG {get; set;} = "";
+    string Notificar;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        Task task = new Task(() =>{
+            provincias = getProvincias();
+        });
+        task.Start();
+        await task;
+    }
+
+
+
+    async Task agregarP()
+        {
+            using (var context1 = new vacunaterdContext())
+            {
+
+                    await context1.Provincias.AddAsync(new Provincias() { Nombre = ProvinciaG });
+                    await context1.SaveChangesAsync();
+
+                    Notificar = "Nueva provincia guardada exitosamente...";
+
+            }
+        }
+
+    async Task agregarV()
+        {
+            using (var context2 = new vacunaterdContext())
+            {
+                //el id es auto increment asi que lo dejamos null
+                await context2.VacunasClase.AddAsync(new VacunasClase() { Nombre = VacunaG });
+                await context2.SaveChangesAsync();
+
+                Notificar = "Nueva vacuna guardada exitosamente...";
+            }
+        }
+}
